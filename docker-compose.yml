@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   chat2db:
     image: chat2db/chat2db:latest
@@ -9,9 +9,9 @@ services:
       - "10824:10824"
   # 连接地址：jdbc:postgresql://localhost:5432/ali_dbhub_test, 用户名:ali_dbhub, 密码:ali_dbhub 端口：5432 默认数据库：ali_dbhub_test
   postgres:
-    image: postgres:12-alpine
+    image: postgres:16.2-alpine3.19
     restart: always
-    container_name: postgres-alpine
+    container_name: postgres
     environment:
       POSTGRES_USER: ali_dbhub
       POSTGRES_PASSWORD: ali_dbhub
@@ -19,8 +19,7 @@ services:
     ports:
       - 5432:5432
     networks:
-      mern-network:
-
+      chatdb-network:
 
   adminer:
     image: adminer
@@ -29,7 +28,7 @@ services:
     ports:
       - 8080:8080
     networks:
-      mern-network:
+      chatdb-network:
 
 networks:
   mern-network:
@@ -58,9 +57,9 @@ networks:
   #  # command: redis-server/etc/redis/redis.conf
   #   ports:
   #     - 6379:6379
-    #服务名称
+  #服务名称
 
-    # jdbc:mariadb://localhost:3303 ? user=root&password=ali_dbhub
+  # jdbc:mariadb://localhost:3303 ? user=root&password=ali_dbhub
   # mariadb:
   #   image: mariadb:10.5.5
   #   container_name: "mariadb1"
