@@ -7,6 +7,9 @@ services:
       - ~/.chat2db-docker:/root/.chat2db
     ports:
       - "10824:10824"
+    networks:
+      chatdb-network:
+
   # 连接地址：jdbc:postgresql://localhost:5432/ali_dbhub_test, 用户名:ali_dbhub, 密码:ali_dbhub 端口：5432 默认数据库：ali_dbhub_test
   postgres:
     image: postgres:16.2-alpine3.19
@@ -31,7 +34,7 @@ services:
       chatdb-network:
 
 networks:
-  mern-network:
+  chatdb-network:
   # 连接地址：jdbc:oracle:thin:@localhost:1521:XE,  用户名:system, 密码:ali_dbhub
   # 默认数据库XEPDB1 启动会快很多
   # oracle:
